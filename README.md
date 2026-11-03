@@ -43,7 +43,7 @@ python -m pytest -v
 
 ## Screenshot
 
-![Calculator Screenshot](/Users/thantthantzin/code/python/calculator/screenshots/calcularo_app.png)
+![Calculator Screenshot](screenshots/calculator_app.png)
 
 ## Future Improvements
 
