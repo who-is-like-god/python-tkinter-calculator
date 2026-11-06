@@ -52,6 +52,8 @@ class CalculatorApp:
         self.create_display()
         self.create_buttons()
 
+        self.window.bind_all("<KeyPress>", self.handle_keypress)
+
     def reset_error(self):
         self.input_var.set("")
         self.has_error = False
@@ -117,6 +119,21 @@ class CalculatorApp:
                 return
 
         self.input_var.set(current_text + str(text))
+
+    def handle_keypress(self, event):
+        key = event.keysym.lower()
+
+        if key == "backspace":
+            self.clear_input("del")
+        elif key == "escape":
+            self.clear_input("AC")
+        elif key in ("return", "kp_enter") or event.char == "=":
+            self.expression("=")
+        elif event.char and event.char in "0123456789.+-*/%":
+            self.show_input(event.char)
+        else:
+            return None
+        return "break"
 
     def create_display(self):
         self.display = tk.Entry(
