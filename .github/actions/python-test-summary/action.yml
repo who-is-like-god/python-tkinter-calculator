@@ -1,0 +1,15 @@
+name: Python Test Summary
+description: Read a pytest XML report and print a test summary
+
+inputs:
+  report-path:
+    description: Path to the pytest XML report
+    required: true
+    default: reports/test-results.xml
+
+runs:
+  using: composite
+  steps:
+    - name: Run Python test summary
+      run: python "${{ github.action_path }}/summary.py" "${{ inputs.report-path }}"
+      shell: bash
